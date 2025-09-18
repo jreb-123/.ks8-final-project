@@ -1,0 +1,41 @@
+name: CD with KinD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      # Instala KinD
+      - name: Set up KinD
+        uses: helm/kind-action@v1.8.0
+
+      # Instala kubectl y helm
+      - name: Install kubectl and helm
+        run: |
+          sudo snap install kubectl --classic
+          curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+
+      # Instala tu aplicación con Helm
+      - name: Helm upgrade/install app
+        run: |
+          helm upgrade --install k8s-app charts/app --set image.tag=latest
+          kubectl rollout status deployment/k8s-app --timeout=60s
+          kubectl get all -n default
+
+      # Exporta los manifests renderizados
+      - name: Export Helm rendered manifests
+        run: helm template charts/app --set image.tag=latest > rendered.yaml
+
+      # Guarda rendered.yaml como artifact
+      - name: Upload rendered.yaml artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: rendered-manifests
+          path: rendered.yaml
