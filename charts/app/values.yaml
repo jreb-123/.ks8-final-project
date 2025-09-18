@@ -1,8 +1,14 @@
-replicaCount: 2
-
+replicaCount: 3
+resources:
+  limits:
+    cpu: 500m
+    memory: 256Mi
+  requests:
+    cpu: 250m
+    memory: 128Mi
 image:
   repository: jrebaza01/k8s-app
-  tag: latest
+  tag: v2
   pullPolicy: IfNotPresent
 
 service:
