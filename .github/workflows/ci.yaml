@@ -36,5 +36,5 @@ jobs:
           tags: |
             jrebaza01/k8s-app:${{ env.TAG }}
             jrebaza01/k8s-app:latest
-          cache-from: type=registry,ref=jrebaza01/k8s-app:cache
-          cache-to: type=registry,ref=jrebaza01/k8s-app:cache,mode=max
+          # cache-from: type=registry,ref=jrebaza01/k8s-app:cache
+          # cache-to: type=registry,ref=jrebaza01/k8s-app:cache,mode=max
