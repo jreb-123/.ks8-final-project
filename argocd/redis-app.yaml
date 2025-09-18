@@ -10,8 +10,15 @@ spec:
     chart: redis
     targetRevision: 19.5.0
     helm:
-      valueFiles:
-        - values-redis.yaml
+      values: |
+        architecture: standalone
+        image:
+          repository: bitnami/redis
+          tag: 7.2.4
+        auth:
+          enabled: false
+        replica:
+          replicaCount: 1
   destination:
     server: https://kubernetes.default.svc
     namespace: redis
@@ -19,3 +26,4 @@ spec:
     automated:
       prune: true
       selfHeal: true
+
