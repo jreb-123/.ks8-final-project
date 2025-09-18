@@ -1,0 +1,10 @@
+replicaCount: 1
+
+image:
+  repository: jrebaza01/k8s-app
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
