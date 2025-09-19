@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mini-stack
+  namespace: ministack
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/jreb-123/.ks8-final-project.git'
+    path: charts/mini-stack
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values-mini-stack.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ministack
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
