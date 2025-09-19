@@ -4,7 +4,7 @@ metadata:
   name: mini-stack
   namespace: argocd
 spec:
-  project: default
+  project: corp-project
   source:
     repoURL: 'https://github.com/jreb-123/.ks8-final-project'
     path: charts/mini-stack
