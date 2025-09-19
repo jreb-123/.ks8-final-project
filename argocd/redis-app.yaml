@@ -6,19 +6,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://charts.bitnami.com/bitnami
-    chart: redis
-    targetRevision: 19.5.0
+    repoURL: 'https://github.com/jreb-123/.ks8-final-project.git'
+    path: charts/redis
+    targetRevision: HEAD
     helm:
-      values: |
-        architecture: standalone
-        image:
-          repository: bitnami/redis
-          tag: 7.2.4
-        auth:
-          enabled: false
-        replica:
-          replicaCount: 4
+      valueFiles:
+        - values-redis.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: redis
@@ -26,4 +19,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
+
 
