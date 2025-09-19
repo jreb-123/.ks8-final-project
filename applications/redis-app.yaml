@@ -6,12 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/jreb-123/.ks8-final-project.git'
+    repoURL: 'https://github.com/jreb-123/.ks8-final-project'
     path: charts/redis
     targetRevision: HEAD
-    helm:
-      valueFiles:
-        - values-redis.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: redis
