@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: corp-project
+  namespace: argocd
+spec:
+  description: "Proyecto corporativo para apps de laboratorio"
+  sourceRepos:
+    - 'https://github.com/jreb-123/.ks8-final-project'
+  destinations:
+    - namespace: '*'
+      server: 'https://kubernetes.default.svc'
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  namespaceResourceBlacklist: []
