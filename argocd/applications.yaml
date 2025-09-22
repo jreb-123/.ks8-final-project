@@ -1,0 +1,85 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/jreb-123/.ks8-final-project.git
+    targetRevision: main
+    path: charts/app
+    helm:
+      parameters:
+        - name: image.repository
+          value: jrebaza01/app
+        - name: image.tag
+          value: latest
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/jreb-123/.ks8-final-project.git
+    targetRevision: lab/phase-4-dev
+    path: charts/app
+    helm:
+      valueFiles:
+        - envs/dev/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated: {}
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-staging
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/jreb-123/.ks8-final-project.git
+    targetRevision: lab/phase-4-staging
+    path: charts/app
+    helm:
+      valueFiles:
+        - envs/staging/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated: {}
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-prod
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/jreb-123/.ks8-final-project.git
+    targetRevision: main
+    path: charts/app
+    helm:
+      valueFiles:
+        - envs/prod/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated: {}
+
+      prune: true
+      selfHeal: true
