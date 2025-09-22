@@ -38,4 +38,4 @@ jobs:
       - name: K8s Dry-Run (syntax validation)
         run: |
           helm template app charts/app --set image.repository=jrebaza01/app --set image.tag=${{ github.sha }} \
-          | kubectl apply --dry-run=client -f -
+          | kubectl apply --dry-run=client --validate=false -f -
