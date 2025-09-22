@@ -27,7 +27,7 @@ jobs:
           push: true
           tags: jrebaza01/app:${{ github.sha }}
           file: ./app/Dockerfile
-          context: ./app
+          context: .
 
       - name: Helm Lint
         run: helm lint charts/app
