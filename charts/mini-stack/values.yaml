@@ -8,7 +8,7 @@ resources:
     memory: 128Mi
 image:
   repository: jrebaza01/k8s-app
-  tag: latest
+  tag: 20250919171601
   pullPolicy: IfNotPresent
 
 service:
