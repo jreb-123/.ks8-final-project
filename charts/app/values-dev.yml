@@ -1,0 +1,8 @@
+replicaCount: 1
+image:
+  repository: jrebaza01/app
+  tag: dev
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
