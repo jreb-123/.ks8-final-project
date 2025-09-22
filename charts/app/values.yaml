@@ -1,16 +1,7 @@
-replicaCount: 1
-resources:
-  limits:
-    cpu: 500m
-    memory: 256Mi
-  requests:
-    cpu: 250m
-    memory: 128Mi
-image:
-  repository: jrebaza01/k8s-app
-  tag: v2
-  pullPolicy: IfNotPresent
-
+﻿image:
+  repository: jrebaza01/app
+  tag: "0.1"
 service:
   type: ClusterIP
   port: 80
+replicaCount: 1
